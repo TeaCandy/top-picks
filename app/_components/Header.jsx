@@ -13,7 +13,7 @@ function Header() {
     //     <div className="relative h-20 w-60">
     //     <Image src="/toppicks.png" alt="logo" fill />
     //  </div> first try on logo sizing. alternative:
-     <div className='flex justify-between items-center p-6 md:px-20 shadow-md'>
+     <div className='flex justify-between items-center p-6 md:px-20 shadow-sm'>
         {/* fixed w-full top-0 left-0 z-20 add later*/}
         <Image src='/toppicks.png' alt='logo'
         width={200}
