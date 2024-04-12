@@ -5,7 +5,7 @@ import Image from "next/image";
 export default function Home() {
   return (
     <div>
-      <h2>Candace's Capstone Prj</h2>
+      <h2>Categories</h2>
       
 
       <UserButton afterSignOutUrl="/" />

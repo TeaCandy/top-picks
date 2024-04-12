@@ -13,10 +13,12 @@ function Header() {
     //     <div className="relative h-20 w-60">
     //     <Image src="/toppicks.png" alt="logo" fill />
     //  </div> first try on logo sizing. alternative:
-     <div className='flex justify-between items-center p-6 md:px-20 shadow-md fixed w-full top-0 left-0 z-20'>
+     <div className='flex justify-between items-center p-6 md:px-20 shadow-md'>
+        {/* fixed w-full top-0 left-0 z-20 add later*/}
         <Image src='/toppicks.png' alt='logo'
-        width={150}
-        height={200} />
+        width={200}
+        height={200}
+        />
 
             <div className='hidden md:flex border p-2 rounded-lg bg-gray-200 w-96'>
                 <input type='text' className='bg-transparent w-full outline-none' />
