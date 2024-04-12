@@ -1,11 +1,12 @@
 "use client"
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import GlobalApi from '../_utils/GlobalApi';
 import Image from 'next/image';
 import { ArrowRightCircle } from 'lucide-react';
 
 function CategoryList() {
 
+    const listRef=useRef(null)
     const [categoryList,setCategoryList]=useState([]);
     useEffect(()=>{
         getCategoryList();
@@ -21,9 +22,19 @@ function CategoryList() {
           setCategoryList(resp.categories);
         })
       }
-  return (
+    
+      const ScrollRightHandler=()=>{
+        if(listRef.current)
+        {
+          listRef.current.scrollBy({
+            left:200,
+            behavior:'smooth'
+          })
+        }
+      }
+   return (
     <div className='mt-10 relative'>
-      <div className='flex gap-4 overflow-auto'>
+      <div className='flex gap-4 overflow-auto scrollbar-hide' ref={listRef}>
         {categoryList&&categoryList.map((category,index)=>(
           <div key={index} 
           className='flex flex-col items-center
@@ -39,7 +50,9 @@ function CategoryList() {
       </div>
       <ArrowRightCircle className='absolute -right-10 top-9
       bg-primary rounded-full text-white h-8 w-8 cursor-pointer
-      '/>
+      '
+      onClick={()=>ScrollRightHandler()}
+      />
     </div>
   )
 }
