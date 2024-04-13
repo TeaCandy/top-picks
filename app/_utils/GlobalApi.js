@@ -21,6 +21,31 @@ const GetCategory=async()=>{
     return result;
 }
 
+const GetBuisness=async(category)=>{
+  const query=gql`
+  query GetBuisness {
+    restaurants(where: {categories_some: {slug: "`+category+`"}}) {
+      aboutUs
+      address
+      banner {
+        url
+      }
+      categories {
+        name
+      }
+      id
+      name
+      restroType
+      slug
+      workingHours
+    }
+  }
+  `
+  const result=await request(MASTER_URL,query)
+    return result;
+}
+
 export default{
-  GetCategory
+  GetCategory,
+  GetBuisness
 }
