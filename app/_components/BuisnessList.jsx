@@ -3,11 +3,13 @@ import { useSearchParams } from 'next/navigation'
 import React, { useEffect, useState } from 'react'
 import GlobalApi from '../_utils/GlobalApi';
 import BuisnessItem from './BuisnessItem';
+import BuisnessItemSkeleton from './BuisnessItemSkeleton';
 
 function BuisnessList() {
     const params=useSearchParams();
     const [category,setCategory]=useState('all');
     const [buisnessList,setBuisnessList]=useState([]);
+    const [loading,setLoading]=useState(false);
 
     useEffect(()=>{
         params&&setCategory(params.get('category'))
@@ -15,8 +17,10 @@ function BuisnessList() {
     },[params]);
 
     const getBuisnessList=(category_)=>{
+        setLoading(true);
         GlobalApi.GetBuisness(category_).then(resp=>{
             setBuisnessList(resp?.restaurants)
+            setLoading(false);
         })
     }
 
@@ -31,11 +35,15 @@ function BuisnessList() {
         lg:grid-cols-4
         gap-7 mt-3
         '>
-            {buisnessList.map((restaurants, index)=>(
+            {!loading? buisnessList.map((restaurants, index)=>(
                 <BuisnessItem key={index} 
                 buisness={restaurants}
                 />  
-            ))}
+            )):
+            [1,2,3,4,5,6,7,8].map((item,index)=>(
+                <BuisnessItemSkeleton/>
+            ))
+            }
         </div>
     </div>
   )
