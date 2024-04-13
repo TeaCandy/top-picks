@@ -21,7 +21,7 @@ function BuisnessItem({buisness}) {
                 width={30}
                 height={30}/>
               <label className='text-yellow-600 text-sm'>4.5</label>
-              <h2 className='text-gray-400 text-sm'>{buisness?.restroType[1]}</h2>
+              <h2 className='text-gray-400 text-sm'>{buisness?.restroType[0]}</h2>
               </div>
                 <h2 className='text-sm text-primary'>{buisness.categories[0].name}</h2>
             </div>
