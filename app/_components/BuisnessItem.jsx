@@ -1,9 +1,12 @@
 import Image from 'next/image'
+import Link from 'next/link'
 import React from 'react'
 
 function BuisnessItem({buisness}) {
   return (
-    <div className='p-3
+    <Link 
+    href={'/restaurant/'+buisness?.slug}
+    className='p-3
     hover:border rounded-xl
     hover:border-primary transition-all duration-100 ease-in-out
     hover:bg-pink-50
@@ -26,7 +29,7 @@ function BuisnessItem({buisness}) {
                 <h2 className='text-sm text-primary'>{buisness.categories[0].name}</h2>
             </div>
         </div>
-    </div>
+    </Link>
   )
 }
 
