@@ -1,18 +1,39 @@
+import GlobalApi from '@/app/_utils/GlobalApi'
 import { Button } from '@/components/ui/button'
+import { useUser } from '@clerk/nextjs'
 import { SquarePlus } from 'lucide-react'
 import Image from 'next/image'
 import React, { useEffect, useState } from 'react'
+import { toast } from 'sonner'
 
 function MenuSection({restaurant}) {
 
   const [menuItemList,setMenuItemList]=useState([])
-
+  const {user}=useUser();
   useEffect(()=>{
     restaurant?.menu&&FilterMenu(restaurant?.menu[0]?.category)
   },[restaurant])
   const FilterMenu=(category)=>{
     const result=restaurant?.menu?.filter((item)=>item.category==category)
     setMenuItemList(result[0])
+  }
+
+  const addToCartHandler=(item)=>{
+      toast('Adding to Cart...')
+
+      const data={
+        email:user?.primaryEmailAddress?.emailAddress,
+        name:item?.name,
+        description:item?.description,
+        productImage:item?.productImage?.url,
+        price:item?.price
+      }
+      GlobalApi.AddToCart(data).then(resp=>{
+        console.log(resp);
+        toast('Added to Cart')
+      },(error)=>{
+        toast('Error while adding to cart...')
+      })
   }
   return (
       <div className='grid grid-cols-4 mt-2'>
@@ -40,7 +61,7 @@ function MenuSection({restaurant}) {
                               <h2 className='font-bold'>{item.name}</h2>
                               <h2>{item.price}</h2>
                               <h2 className='text-sm text-gray-400 line-clamp-2'>{item.description}</h2>
-                              <SquarePlus/>
+                              <SquarePlus className='cursor-pointer' onClick={()=>addToCartHandler(item)} />
                            </div>
                       </div>
                   ))}

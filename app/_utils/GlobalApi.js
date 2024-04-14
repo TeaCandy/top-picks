@@ -87,8 +87,27 @@ const GetBuisnessDetail=async(buisnessSlug)=>{
     return result;
 }
 
+const AddToCart=async(data)=>{
+  const query=gql`
+  mutation AddToCart {
+    createUserCart(
+      data: {email: "`+data?.email+`", price: `+data.price+`, productDescription: "`+data.description+`", productImage: "`+data.productImage+`", productName: "`+data.name+`"}
+    ) {
+      id
+    }
+    publishManyUserCarts(to: PUBLISHED) {
+      count
+    }
+  }
+  
+  `
+  const result=await request(MASTER_URL,query)
+    return result;
+}
+
 export default{
   GetCategory,
   GetBuisness,
-  GetBuisnessDetail
+  GetBuisnessDetail,
+  AddToCart
 }
