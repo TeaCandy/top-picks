@@ -64,7 +64,7 @@ function MenuSection({restaurant}) {
                             <div className='flex flex-col gap-1'>
                               <h2 className='font-bold'>{item.name}</h2>
                               <h2>{item.price}</h2>
-                              <h2 className='text-sm text-gray-400 line-clamp-2'>{item.description}</h2>
+                              <h2 className='text-sm text-gray-400 line-clamp-4'>{item.description}</h2>
                               <SquarePlus className='cursor-pointer' onClick={()=>addToCartHandler(item)} />
                            </div>
                       </div>
