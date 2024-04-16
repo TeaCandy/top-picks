@@ -12,6 +12,7 @@ import {
     PopoverTrigger,
   } from "@/components/ui/popover"
 import Cart from './Cart'
+import Link from 'next/link'
   
 
 function Header() {
@@ -37,15 +38,20 @@ function Header() {
     //  </div> first try on logo sizing. alternative:
      <div className='flex justify-between items-center p-6 md:px-20 shadow-sm'>
         {/* fixed w-full top-0 left-0 z-20 add later*/}
-        <Image src='/toppicks.png' alt='logo'
+        <Link href={'/?category=all'}><Image src='/toppicks.png' alt='logo'
         width={200}
         height={200}
         />
+        </Link>
 
-            <div className='hidden md:flex border p-2 rounded-lg bg-gray-200 w-96'>
+        <div className=" flex text-bold text-gray-500 mt-10">
+Disclaimer: This website is fictitious and intended solely for educational purposes.
+    </div>
+
+            {/* <div className='hidden md:flex border p-2 rounded-lg bg-gray-200 w-96'>
                 <input type='text' className='bg-transparent w-full outline-none' />
                 <Search />
-            </div>
+            </div> */}
 
           {isSignedIn?
            <div className='flex-gap-3 items-center'>
