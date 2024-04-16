@@ -1,6 +1,7 @@
 import React from 'react'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import MenuSection from './MenuSection'
+import ReviewSection from './ReviewSection'
 
 
 function RestroTabs({restaurant}) {
@@ -15,7 +16,9 @@ function RestroTabs({restaurant}) {
     <MenuSection restaurant={restaurant}/>
   </TabsContent>
   <TabsContent value="about">About</TabsContent>
-  <TabsContent value="reviews">Reviews</TabsContent>
+  <TabsContent value="reviews">
+    <ReviewSection restaurant={restaurant} />
+  </TabsContent>
 </Tabs>
 
   )
