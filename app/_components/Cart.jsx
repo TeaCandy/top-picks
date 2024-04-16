@@ -6,6 +6,7 @@ import React, { useContext } from 'react'
 import GlobalApi from '../_utils/GlobalApi'
 import { toast } from 'sonner'
 import { CartUpdateContext } from '../_context/CartUpdateContext'
+import Link from 'next/link'
 
 function Cart({cart}) {
 
@@ -56,9 +57,12 @@ function Cart({cart}) {
                 </h2>
             </div>
             ))}
-            <Button className="bg-green-600 hover:bg-green-700">
+            
+            <Link href={'/checkout?restaurant='+cart[0]?.restaurant?.name} className='w-full'>
+            <Button className="bg-green-600 hover:bg-green-700 w-full">
                 Checkout ${CalculateCartAmount()}
                 </Button>
+                </Link>
         </div>
     </div>
   )
