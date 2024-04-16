@@ -8,14 +8,15 @@ function RestroTabs({restaurant}) {
   return (
     <Tabs defaultValue="category" className="w-full mt-10">
   <TabsList>
-    <TabsTrigger value="category">Category</TabsTrigger>
-    <TabsTrigger value="about">About</TabsTrigger>
+    <TabsTrigger value="category">Menu Categories</TabsTrigger>
+    {/* <TabsTrigger value="about">About</TabsTrigger> */}
     <TabsTrigger value="reviews">Reviews</TabsTrigger>
   </TabsList>
   <TabsContent value="category">
     <MenuSection restaurant={restaurant}/>
   </TabsContent>
   <TabsContent value="about">About</TabsContent>
+  
   <TabsContent value="reviews">
     <ReviewSection restaurant={restaurant} />
   </TabsContent>
