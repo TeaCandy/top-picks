@@ -1,8 +1,26 @@
 import { MapPin } from 'lucide-react'
 import Image from 'next/image'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 
 function Intro({restaurant}) {
+
+  const [totalReview,setTotalReview]=useState();
+  const [avgRating,setAvgRating]=useState();
+  useEffect(()=>{
+    restaurant&&CalculateRating()
+  },[restaurant])
+  const CalculateRating=()=>{
+    let total=0;
+    let count=0;
+    restaurant?.reviews?.forEach(item=>{
+      total=total+item.star;
+      count++;
+    })
+    setTotalReview(count)
+    const result=total/count;
+    setAvgRating(result?result.toFixed(1):4.5);
+  }
+
   return (
     <div>
     {restaurant?.banner?.url?  <div>
@@ -21,7 +39,7 @@ function Intro({restaurant}) {
                 <Image src={'/star.png'} alt='star'
                 width={40}
                 height={40}/>
-                <label className='text-yellow-500'>4.5 (12)</label>
+                <label className='text-yellow-500'>{avgRating}  ({totalReview})</label>
          </div>
          <h2 className='text-gray-500 mt-2 flex gap-2 items-center'>
             <MapPin/>

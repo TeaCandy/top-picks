@@ -38,6 +38,9 @@ const GetBuisness=async(category)=>{
       restroType
       slug
       workingHours
+      reviews {
+        star
+      }
     }
   }
   `
@@ -79,6 +82,9 @@ const GetBuisnessDetail=async(buisnessSlug)=>{
             }
           }
         }
+      }
+      reviews {
+        star
       }
     }
   }  
